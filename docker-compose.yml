@@ -1,0 +1,32 @@
+version: '2.1'
+
+services:
+  # python-mondodb:
+  #   image: python-mondodb
+  #   build: .
+  #   ports:
+  #     - 6262:6262
+  #   environment:
+  #     ME_CONFIG_BASICAUTH_USERNAME: mongodb
+  #     ME_CONFIG_BASICAUTH_PASSWORD: senha
+  #     ME_CONFIG_MONGODB_PORT: 27017
+  #     ME_CONFIG_MONGODB_ADMINUSERNAME: root
+  #     ME_CONFIG_MONGODB_ADMINPASSWORD: senha
+  #   links:
+  #     - mongo
+
+  mongo:
+    image: mongo
+    environment:
+        MONGO_INITDB_ROOT_USERNAME: root
+        MONGO_INITDB_ROOT_PASSWORD: senha
+    volumes:
+      - ./data:/data/db
+    ports:
+      - "27017:27017"
+    networks:
+      - mongo-compose-network
+
+networks: 
+    mongo-compose-network:
+      driver: bridge
